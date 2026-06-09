@@ -39,7 +39,7 @@ nav{position:fixed;top:0;left:0;right:0;height:72px;z-index:100;display:grid;gri
 .menu-body{background:var(--beige);padding:4rem 3rem;}
 
 /* TABS */
-.tabs{display:flex;border-bottom:1px solid rgba(44,31,20,0.12);margin-bottom:3rem;overflow-x:auto;gap:0;}
+.tabs{display:flex;border-bottom:1px solid rgba(44,31,20,0.12);margin-bottom:3rem;overflow-x:auto;gap:0;position:sticky;top:72px;z-index:50;background:var(--beige);}
 .tab{padding:0.7rem 1.5rem;font-size:0.67rem;letter-spacing:0.18em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;color:rgba(44,31,20,0.38);transition:color 0.2s,border-color 0.2s;font-family:'Sora',sans-serif;white-space:nowrap;font-weight:500;}
 .tab.on{color:var(--terra);border-bottom-color:var(--terra);font-weight:700;}
 .tab:hover:not(.on){color:rgba(44,31,20,0.65);}
@@ -502,7 +502,11 @@ function setTab(id, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   document.getElementById('p-' + id).classList.add('on');
-  if (btn) btn.classList.add('on');
+  if (btn) {
+    btn.classList.add('on');
+    // Auto scroll tab into view
+    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
   window.scrollTo({top: document.querySelector('.menu-body').offsetTop - 80, behavior: 'smooth'});
 }
 const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), {threshold:0.1});
