@@ -507,6 +507,39 @@ function setTab(id, btn) {
 }
 const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), {threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Touch swipe for tabs
+(function() {
+  const panels = ['appetizers','rolls','nigiri','kitchen','sake','cocktails','beverages','desserts','lunch'];
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+
+  document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) < 50) return; // ignore small swipes
+
+    // Find current tab
+    const currentPanel = document.querySelector('.panel.on');
+    const currentId = currentPanel ? currentPanel.id.replace('p-', '') : panels[0];
+    const currentIdx = panels.indexOf(currentId);
+
+    if (diff > 0 && currentIdx < panels.length - 1) {
+      // swipe left → next tab
+      const nextTab = document.querySelectorAll('.tab')[currentIdx + 1];
+      setTab(panels[currentIdx + 1], nextTab);
+    } else if (diff < 0 && currentIdx > 0) {
+      // swipe right → prev tab
+      const prevTab = document.querySelectorAll('.tab')[currentIdx - 1];
+      setTab(panels[currentIdx - 1], prevTab);
+    }
+  }, {passive: true});
+})();
+
 </script>
 </body>
 </html>
