@@ -291,6 +291,15 @@ footer {
   font-size: 2rem !important;
   letter-spacing: 0.01em !important;
 }
+
+/* HERO NEW-MENU CHIP */
+.hero-new{display:inline-flex;align-items:center;gap:0.7rem;margin-bottom:1.7rem;padding:0.72rem 1.55rem;background:var(--terra);border:none;border-radius:100px;font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:#fff;text-decoration:none;opacity:0;animation:fadeUp 0.8s 0.15s forwards;transition:background 0.25s,transform 0.25s,box-shadow 0.25s;box-shadow:0 6px 22px rgba(196,98,45,0.4);}
+.hero-new:hover{background:var(--terra2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(196,98,45,0.5);}
+.hero-new .nm-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:nmPulse 2s infinite;flex-shrink:0;}
+.hero-new .nm-arrow{font-size:0.9rem;transition:transform 0.25s;}
+.hero-new:hover .nm-arrow{transform:translateX(4px);}
+@keyframes nmPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.65);}70%{box-shadow:0 0 0 8px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
+@media(max-width:600px){.hero-new{font-size:0.64rem;letter-spacing:0.1em;padding:0.62rem 1.25rem;}}
 </style>
 
 <meta property="og:type" content="website">
@@ -353,6 +362,7 @@ footer {
   <div class="slide" style="background-image:url('https://i.ibb.co/JWJjcY5L/Screenshot-2026-06-07-at-10-45-48-AM.png')"></div>
   <div class="slide" style="background-image:url('https://i.ibb.co/zVD7QD3x/IMG-5691-1.jpg')"></div>
 <div class="hero-content">
+    <a class="hero-new" href="menu.html#new"><span class="nm-dot"></span>Just Added · 8 New Dishes<span class="nm-arrow">&rarr;</span></a>
     <p class="hero-eyebrow">Park Slope, Brooklyn · Est. 2014</p>
     <h1 class="hero-title">Japanese <em>inspired</em><br>cuisine, rooted in<br>craft &amp; care</h1>
     <p class="hero-sub">Quality, fresh, and clean — where every plate reflects a commitment to the finest ingredients.</p>

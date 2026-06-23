@@ -127,7 +127,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 }
 
 /* NEW MENU SHOWCASE */
-.newmenu{margin-bottom:3.5rem;}
+.newmenu{margin-bottom:3.5rem;scroll-margin-top:90px;}
 .newmenu-head{display:flex;align-items:baseline;gap:0.9rem;margin-bottom:1.6rem;}
 .newmenu-head .eyebrow{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--terra);font-weight:700;white-space:nowrap;}
 .newmenu-head h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--brown);line-height:1;white-space:nowrap;}
@@ -150,6 +150,22 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
   .newmenu-head h2{font-size:1.5rem;}
   .newmenu-head .eyebrow{display:none;}
 }
+
+/* DISH MODAL */
+.dish-modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:1.5rem;background:rgba(44,31,20,0.6);backdrop-filter:blur(6px);opacity:0;transition:opacity 0.28s;}
+.dish-modal.open{display:flex;opacity:1;}
+.dish-dialog{background:var(--cream);border-radius:6px;max-width:560px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 24px 70px rgba(44,31,20,0.4);transform:translateY(16px) scale(0.98);transition:transform 0.3s ease;position:relative;}
+.dish-modal.open .dish-dialog{transform:none;}
+.dish-modal-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:6px 6px 0 0;background:var(--beige2);}
+.dish-modal-body{padding:1.7rem 1.9rem 2rem;}
+.dish-modal-eyebrow{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.7rem;}
+.dish-modal-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;}
+.dish-modal-name{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;color:var(--brown);line-height:1.1;}
+.dish-modal-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);white-space:nowrap;}
+.dish-modal-desc{margin-top:0.85rem;font-size:0.92rem;color:rgba(44,31,20,0.62);line-height:1.65;font-weight:300;}
+.dish-close{position:absolute;top:0.85rem;right:0.95rem;width:36px;height:36px;border-radius:50%;border:none;background:rgba(44,31,20,0.55);color:var(--cream);font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.dish-close:hover{background:rgba(44,31,20,0.85);}
+@media(max-width:600px){.dish-modal-name{font-size:1.45rem;}.dish-modal-body{padding:1.3rem 1.3rem 1.6rem;}}
 </style>
 
 <meta property="og:type" content="website">
@@ -210,10 +226,10 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 </div>
 
 <div class="menu-body">
-  <section class="newmenu reveal">
+  <section class="newmenu reveal" id="new">
     <div class="newmenu-head"><span class="eyebrow">Just Added</span><h2>New on the Menu</h2><span class="rule"></span></div>
     <div class="ncards">
-        <div class="ncard" onclick="goTab('appetizers')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="hamachi-toro-yuzu-dashi.jpg" alt="Hamachi Toro Yuzu Dashi" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Hamachi Toro Yuzu Dashi</div><div class="ncard-price">$19</div></div>
@@ -221,7 +237,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Appetizers</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('kitchen')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="chicken-yakitori.jpg" alt="Chicken Yakitori" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Chicken Yakitori</div><div class="ncard-price">$18</div></div>
@@ -229,7 +245,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Kitchen</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('appetizers')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="shrimp-tempura-5pc.jpg" alt="Shrimp Tempura (5 pc)" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Shrimp Tempura (5 pc)</div><div class="ncard-price">$17</div></div>
@@ -237,7 +253,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Appetizers</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('appetizers')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="kabocha-squash-tempura.jpg" alt="Kabocha Squash Tempura" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Kabocha Squash Tempura</div><div class="ncard-price">$13</div></div>
@@ -245,7 +261,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Appetizers</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('kitchen')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="cold-soba.jpg" alt="Cold Soba" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Cold Soba</div><div class="ncard-price">$18</div></div>
@@ -253,7 +269,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Kitchen</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('kitchen')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="kabocha-squash-tempura-soba-set.jpg" alt="Kabocha Squash Tempura Soba Set" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Kabocha Squash Tempura Soba Set</div><div class="ncard-price">$22</div></div>
@@ -261,7 +277,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Kitchen</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('kitchen')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="shrimp-tempura-soba-set.jpg" alt="Shrimp Tempura Soba Set" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Shrimp Tempura Soba Set</div><div class="ncard-price">$27</div></div>
@@ -269,7 +285,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
             <div class="ncard-tab">Kitchen</div>
           </div>
         </div>
-        <div class="ncard" onclick="goTab('beverages')">
+        <div class="ncard" onclick="openDish(this)">
           <div class="ncard-img"><span class="new-badge">New</span><img src="iced-ube-latte.jpg" alt="Iced Ube Latte" loading="lazy"></div>
           <div class="ncard-body">
             <div class="ncard-top"><div class="ncard-name">Iced Ube Latte</div><div class="ncard-price">$8</div></div>
@@ -646,10 +662,35 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
   <p class="footer-copy">© 2025 Oita Sushi · 833 Union St, Park Slope, Brooklyn</p>
 </footer>
 
+<div class="dish-modal" id="dishModal" onclick="if(event.target===this)closeDish()">
+  <div class="dish-dialog">
+    <button class="dish-close" onclick="closeDish()" aria-label="Close">&times;</button>
+    <img class="dish-modal-img" id="dmImg" src="" alt="">
+    <div class="dish-modal-body">
+      <div class="dish-modal-eyebrow" id="dmTab"></div>
+      <div class="dish-modal-top"><div class="dish-modal-name" id="dmName"></div><div class="dish-modal-price" id="dmPrice"></div></div>
+      <div class="dish-modal-desc" id="dmDesc"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 document.getElementById('hbg').addEventListener('click', () => document.getElementById('mob').classList.add('open'));
 document.getElementById('mclose').addEventListener('click', () => document.getElementById('mob').classList.remove('open'));
 function goTab(id){var i=['appetizers','rolls','nigiri','kitchen','sake','cocktails','beverages','desserts','lunch'].indexOf(id);setTab(id, document.querySelectorAll('.tab')[i]);}
+function openDish(card){
+  var img=card.querySelector('.ncard-img img');
+  document.getElementById('dmImg').src=img.getAttribute('src');
+  document.getElementById('dmImg').alt=img.getAttribute('alt')||'';
+  document.getElementById('dmName').textContent=card.querySelector('.ncard-name').textContent;
+  document.getElementById('dmPrice').textContent=card.querySelector('.ncard-price').textContent;
+  document.getElementById('dmDesc').textContent=card.querySelector('.ncard-desc').textContent;
+  document.getElementById('dmTab').textContent=card.querySelector('.ncard-tab').textContent;
+  document.getElementById('dishModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDish(){document.getElementById('dishModal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDish();});
 function setTab(id, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
