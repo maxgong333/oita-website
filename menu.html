@@ -43,7 +43,7 @@ nav{position:fixed;top:0;left:0;right:0;height:72px;z-index:100;display:grid;gri
 .tab{padding:0.7rem 1.5rem;font-size:0.67rem;letter-spacing:0.18em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;color:rgba(44,31,20,0.38);transition:color 0.2s,border-color 0.2s;font-family:'Sora',sans-serif;white-space:nowrap;font-weight:500;}
 .tab.on{color:var(--terra);border-bottom-color:var(--terra);font-weight:700;}
 .tab:hover:not(.on){color:rgba(44,31,20,0.65);}
-.panel{display:none;}.panel.on{display:block;}
+.panel{display:none;}.panel.on{display:block;min-height:calc(100vh - 200px);}
 
 /* MENU ROWS */
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:0 3rem;}
