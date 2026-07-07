@@ -309,6 +309,33 @@ footer {
 .hero-new:hover .nm-arrow{transform:translateX(4px);}
 @keyframes nmPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.65);}70%{box-shadow:0 0 0 8px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
 @media(max-width:600px){.hero-new{font-size:0.64rem;letter-spacing:0.1em;padding:0.62rem 1.25rem;}}
+
+/* OMAKASE POPUP */
+.omk-overlay{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:1.2rem;background:rgba(44,31,20,0.62);backdrop-filter:blur(6px);opacity:0;transition:opacity 0.3s;}
+.omk-overlay.open{display:flex;opacity:1;}
+.omk-card{position:relative;background:var(--cream);border-radius:6px;max-width:460px;width:100%;max-height:92vh;overflow-y:auto;padding:2.6rem 2.2rem 2.2rem;text-align:center;box-shadow:0 26px 70px rgba(44,31,20,0.45);transform:translateY(18px) scale(0.97);transition:transform 0.32s ease;}
+.omk-overlay.open .omk-card{transform:none;}
+.omk-close{position:absolute;top:0.9rem;right:0.9rem;width:34px;height:34px;border-radius:50%;border:none;background:rgba(44,31,20,0.08);color:var(--brown);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.omk-close:hover{background:rgba(44,31,20,0.16);}
+.omk-eyebrow{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.9rem;}
+.omk-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--brown);line-height:1.15;margin-bottom:1.1rem;}
+.omk-title em{color:var(--gold);font-style:italic;}
+.omk-divider{display:flex;align-items:center;justify-content:center;gap:0.7rem;margin:0 0 1.1rem;}
+.omk-divider span{width:34px;height:1px;background:rgba(44,31,20,0.18);}
+.omk-divider .omk-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.omk-price{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--terra);margin-bottom:0.15rem;}
+.omk-price-sub{font-size:0.63rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(44,31,20,0.45);margin-bottom:1.6rem;}
+.omk-course-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(44,31,20,0.4);margin-bottom:0.4rem;}
+.omk-course-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--brown);margin-bottom:1.3rem;}
+.omk-main-box{border:1px solid rgba(196,98,45,0.35);border-radius:4px;padding:1.4rem 1.3rem 1.5rem;margin-bottom:1.3rem;background:rgba(196,98,45,0.035);}
+.omk-fish-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 1rem;margin:0.9rem 0 1.2rem;}
+.omk-fish{font-size:0.86rem;color:rgba(44,31,20,0.72);}
+.omk-fish .jp{color:rgba(44,31,20,0.4);font-size:0.78rem;margin-left:0.25rem;}
+.omk-temaki{border-top:1px solid rgba(196,98,45,0.25);padding-top:0.9rem;}
+.omk-temaki-label{font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.3rem;}
+.omk-temaki-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--brown);}
+.omk-note{font-size:0.75rem;color:rgba(44,31,20,0.45);font-style:italic;margin-top:0.4rem;}
+@media(max-width:480px){.omk-card{padding:2.1rem 1.5rem 1.8rem;}.omk-title{font-size:1.65rem;}.omk-fish-grid{grid-template-columns:1fr;}}
 </style>
 
 <meta property="og:type" content="website">
@@ -566,5 +593,56 @@ timer = setInterval(() => goTo(cur + 1), 5000);
 const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 </script>
+
+<div class="omk-overlay" id="omkPopup" onclick="if(event.target===this)closeOmk()">
+  <div class="omk-card">
+    <button class="omk-close" onclick="closeOmk()" aria-label="Close">&times;</button>
+    <p class="omk-eyebrow">Wednesday &amp; Thursday</p>
+    <h2 class="omk-title">Chef's Midweek <em>Omakase</em></h2>
+    <div class="omk-divider"><span></span><span class="omk-dot"></span><span></span></div>
+    <p class="omk-price">$68</p>
+    <p class="omk-price-sub">Per Guest &middot; Walk-In Dining</p>
+
+    <p class="omk-course-label">Course One</p>
+    <p class="omk-course-name">Hamachi Toro Yuzu Dashi</p>
+
+    <div class="omk-main-box">
+      <p class="omk-course-label">Course Two &middot; The Main</p>
+      <p class="omk-course-name" style="margin-bottom:0.2rem;">Seven-Piece Nigiri <span style="color:rgba(44,31,20,0.4);font-size:0.85rem;">握り七貫</span></p>
+      <div class="omk-fish-grid">
+        <div class="omk-fish">Madai <span class="jp">真鯛</span></div>
+        <div class="omk-fish">Kanpachi <span class="jp">間八</span></div>
+        <div class="omk-fish">Salmon <span class="jp">鮭</span></div>
+        <div class="omk-fish">Akami <span class="jp">赤身</span></div>
+        <div class="omk-fish">Shima Aji <span class="jp">縞鯵</span></div>
+        <div class="omk-fish">Sawara <span class="jp">鰆</span></div>
+      </div>
+      <p class="omk-fish" style="margin-bottom:0.9rem;">Lightly Torched Sablefish <span class="jp">銀鱈</span></p>
+      <div class="omk-temaki">
+        <p class="omk-temaki-label">To Finish the Course</p>
+        <p class="omk-temaki-name">Salmon Ikura Temaki <span style="color:rgba(44,31,20,0.4);font-size:0.85rem;">手巻き</span></p>
+      </div>
+    </div>
+
+    <p class="omk-course-label">Course Three</p>
+    <p class="omk-course-name" style="margin-bottom:1.6rem;">Gelato</p>
+
+    <a href="menu.html" class="btn-terra" style="display:inline-block;" onclick="closeOmk()">View Full Menu</a>
+    <p class="omk-note">Available Wednesdays &amp; Thursdays, while supplies last.</p>
+  </div>
+</div>
+
+
+<script>
+function closeOmk(){document.getElementById('omkPopup').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    document.getElementById('omkPopup').classList.add('open');
+    document.body.style.overflow='hidden';
+  }, 900);
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeOmk(); });
+</script>
+
 </body>
 </html>
