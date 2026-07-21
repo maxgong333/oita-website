@@ -175,6 +175,21 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 .dish-close{position:absolute;top:0.85rem;right:0.95rem;width:36px;height:36px;border-radius:50%;border:none;background:rgba(44,31,20,0.55);color:var(--cream);font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
 .dish-close:hover{background:rgba(44,31,20,0.85);}
 @media(max-width:600px){.dish-modal-name{font-size:1.45rem;}.dish-modal-body{padding:1.3rem 1.3rem 1.6rem;}}
+
+/* WED/THU PROMO CARD */
+.promo-card{max-width:600px;margin:0 auto 3.5rem;background:var(--cream);border:1px solid rgba(44,31,20,0.1);border-radius:6px;padding:1.8rem 2rem;box-shadow:0 4px 18px rgba(44,31,20,0.06);}
+.promoc-eyebrow{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.25rem;text-align:left;}
+.promoc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--brown);line-height:1.15;text-align:left;margin-bottom:0.2rem;}
+.promoc-title em{color:var(--gold);font-style:italic;}
+.promoc-title .promoc-price{float:right;color:var(--terra);font-size:1.25rem;}
+.promoc-sub{font-size:0.75rem;color:rgba(44,31,20,0.5);text-align:left;margin-bottom:0.5rem;line-height:1.4;}
+.promoc-dine{display:inline-block;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:700;background:rgba(196,98,45,0.1);padding:0.14rem 0.5rem;border-radius:100px;margin-left:0.4rem;}
+.promoc-row{display:flex;align-items:baseline;gap:0.6rem;padding:0.5rem 0;border-top:1px solid rgba(44,31,20,0.07);text-align:left;}
+.promoc-label{flex:0 0 auto;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(44,31,20,0.4);font-weight:700;width:5rem;}
+.promoc-text{flex:1;font-size:0.82rem;color:rgba(44,31,20,0.72);line-height:1.45;}
+.promoc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--terra);}
+.promoc-divider{height:1px;background:rgba(44,31,20,0.14);margin:1.1rem 0 0.9rem;}
+@media(max-width:600px){.promo-card{padding:1.4rem 1.4rem;}.promoc-title{font-size:1.2rem;}}
 </style>
 
 <meta property="og:type" content="website">
@@ -304,6 +319,25 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
         </div>
     </div>
   </section>
+
+  <div class="promo-card">
+    <p class="promoc-eyebrow">Wednesday &amp; Thursday</p>
+    <h3 class="promoc-title">Chef's Midweek <em>Omakase</em> <span class="promoc-price">$68</span></h3>
+    <p class="promoc-sub">Per guest <span class="promoc-dine">Dine-in</span></p>
+
+    <div class="promoc-row"><span class="promoc-label">Course One</span><span class="promoc-text">Hamachi Toro Yuzu Dashi</span></div>
+    <div class="promoc-row"><span class="promoc-label">Course Two</span><span class="promoc-text">Seven-Piece Nigiri &mdash; Madai, Kanpachi, Salmon, Akami, Shima Aji, Sawara, Lightly Torched Sablefish; to finish, Salmon Ikura Temaki</span></div>
+    <div class="promoc-row"><span class="promoc-label">Course Three</span><span class="promoc-text">Gelato</span></div>
+
+    <div class="promoc-divider"></div>
+
+    <p class="promoc-eyebrow">Summer Special</p>
+    <h3 class="promoc-title"><em>Karaage</em> &amp; Asahi</h3>
+    <p class="promoc-sub">Crispy spicy karaage, ice-cold Asahi draft <span class="promoc-dine">Dine-in</span></p>
+
+    <div class="promoc-row"><span class="promoc-label">Single</span><span class="promoc-text">6pc Karaage + Asahi Draft &times;1</span><span class="promoc-price2">$17</span></div>
+    <div class="promoc-row"><span class="promoc-label">Double</span><span class="promoc-text">10pc Karaage + Asahi Draft &times;2</span><span class="promoc-price2">$29</span></div>
+  </div>
 
   <div class="tabs">
     <button class="tab on" onclick="setTab('appetizers',this)">Appetizers</button>
