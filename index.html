@@ -351,10 +351,11 @@ footer {
 .omkc-eyebrow{font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.25rem;text-align:left;}
 .omkc-title{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:400;color:var(--brown);line-height:1.1;text-align:left;margin-bottom:0.15rem;}
 .omkc-title em{color:var(--gold);font-style:italic;}
-.omkc-title .omkc-price{float:right;color:var(--terra);font-size:1.15rem;}
-.omkc-sub{font-size:0.7rem;color:rgba(44,31,20,0.5);text-align:left;margin-bottom:0.4rem;line-height:1.35;}
+.omkc-price-inline{color:var(--terra);font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;}
+.omkc-sub{font-size:0.68rem;color:rgba(44,31,20,0.5);text-align:left;margin-bottom:0.25rem;line-height:1.3;display:flex;align-items:baseline;justify-content:space-between;gap:0.6rem;}
+.omkc-sub-left{display:flex;align-items:baseline;gap:0.4rem;}
 .omkc-dine{display:inline-block;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:700;background:rgba(196,98,45,0.1);padding:0.12rem 0.45rem;border-radius:100px;margin-left:0.4rem;}
-.omkc-row{display:flex;align-items:baseline;gap:0.6rem;padding:0.28rem 0;border-top:1px solid rgba(44,31,20,0.07);text-align:left;}
+.omkc-row{display:flex;align-items:baseline;gap:0.6rem;padding:0.22rem 0;border-top:1px solid rgba(44,31,20,0.07);text-align:left;}
 .omkc-label{flex:0 0 auto;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(44,31,20,0.4);font-weight:700;width:4.6rem;}
 .omkc-text{flex:1;font-size:0.78rem;color:rgba(44,31,20,0.72);line-height:1.4;}
 .omkc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--terra);}
@@ -630,8 +631,8 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
     <button class="omk-close" onclick="closeOmk()" aria-label="Close">&times;</button>
     <div class="omk-card-inner">
     <p class="omkc-eyebrow">Wednesday &amp; Thursday</p>
-    <h2 class="omkc-title">Chef's Midweek <em>Omakase</em> <span class="omkc-price">$68</span></h2>
-    <p class="omkc-sub">Per guest <span class="omkc-dine">Dine-In Only</span></p>
+    <h2 class="omkc-title">Chef's Midweek <em>Omakase</em></h2>
+    <p class="omkc-sub"><span class="omkc-sub-left">Per guest <span class="omkc-dine">Dine-In Only</span></span><span class="omkc-price-inline">$68</span></p>
 
     <div class="omkc-row"><span class="omkc-label">Course One</span><span class="omkc-text">Hamachi Toro Yuzu Dashi</span></div>
     <div class="omkc-row"><span class="omkc-label">Course Two</span><span class="omkc-text">Seven-Piece Nigiri &mdash; Madai, Kanpachi, Salmon, Akami, Shima Aji, Sawara, Lightly Torched Sablefish; to finish, Salmon Ikura Temaki</span></div>

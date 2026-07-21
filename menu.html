@@ -177,7 +177,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 @media(max-width:600px){.dish-modal-name{font-size:1.45rem;}.dish-modal-body{padding:1.3rem 1.3rem 1.6rem;}}
 
 /* WED/THU PROMO CARD */
-.promo-card{max-width:600px;margin:0 auto 3.5rem;background:var(--cream);border:1px solid rgba(44,31,20,0.1);border-radius:6px;padding:1.8rem 2rem;box-shadow:0 4px 18px rgba(44,31,20,0.06);}
+.promo-card{position:relative;max-width:600px;margin:0 auto 3.5rem;background:var(--cream);border:1px solid rgba(44,31,20,0.1);border-radius:6px;padding:1.8rem 2rem;box-shadow:0 4px 18px rgba(44,31,20,0.06);}
 .promoc-eyebrow{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.25rem;text-align:left;}
 .promoc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--brown);line-height:1.15;text-align:left;margin-bottom:0.2rem;}
 .promoc-title em{color:var(--gold);font-style:italic;}
@@ -189,6 +189,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 .promoc-text{flex:1;font-size:0.82rem;color:rgba(44,31,20,0.72);line-height:1.45;}
 .promoc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--terra);}
 .promoc-divider{height:1px;background:rgba(44,31,20,0.14);margin:1.1rem 0 0.9rem;}
+.promo-new-badge{position:absolute;top:-0.7rem;right:1.4rem;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--cream);background:var(--terra);padding:0.32rem 0.7rem;border-radius:100px;box-shadow:0 3px 10px rgba(196,98,45,0.35);}
 @media(max-width:600px){.promo-card{padding:1.4rem 1.4rem;}.promoc-title{font-size:1.2rem;}}
 </style>
 
@@ -321,6 +322,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
   </section>
 
   <div class="promo-card">
+    <span class="promo-new-badge">New</span>
     <p class="promoc-eyebrow">Wednesday &amp; Thursday</p>
     <h3 class="promoc-title">Chef's Midweek <em>Omakase</em> <span class="promoc-price">$68</span></h3>
     <p class="promoc-sub">Per guest <span class="promoc-dine">Dine-in</span></p>
