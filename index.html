@@ -360,6 +360,12 @@ footer {
 .omkc-text{flex:1;font-size:0.78rem;color:rgba(44,31,20,0.72);line-height:1.4;}
 .omkc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--terra);}
 .omkc-divider{height:1px;background:rgba(44,31,20,0.14);margin:0.6rem 0 0.5rem;}
+.omk-slide{display:none;}
+.omk-slide.active{display:block;}
+.omk-pager{display:flex;justify-content:center;gap:0.5rem;margin-bottom:0.7rem;}
+.omk-pager button{width:7px;height:7px;padding:0;border-radius:50%;border:none;background:rgba(44,31,20,0.18);cursor:pointer;transition:background 0.2s,transform 0.2s;}
+.omk-pager button.active{background:var(--terra);transform:scale(1.3);}
+
 
 .omk-combo-box{border:1px solid rgba(196,98,45,0.35);border-radius:4px;padding:1.3rem 1.3rem 1.4rem;margin-bottom:1.1rem;background:rgba(196,98,45,0.035);}
 .omk-combo-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.5rem;}
@@ -630,6 +636,11 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
   <div class="omk-card">
     <button class="omk-close" onclick="closeOmk()" aria-label="Close">&times;</button>
     <div class="omk-card-inner">
+    <p class="omkc-eyebrow" style="font-size:0.62rem;">Summer Specials</p>
+    <p class="omkc-sub" style="margin-bottom:0.7rem;">Through August <span class="omkc-dine">Dine-In Only</span></p>
+    <div class="omkc-divider" style="margin:0 0 0.8rem;"></div>
+
+    <div class="omk-slide active" id="slide-omakase">
     <p class="omkc-eyebrow">Wednesday &amp; Thursday</p>
     <h2 class="omkc-title">Chef's Midweek <em>Omakase</em></h2>
     <p class="omkc-sub"><span class="omkc-sub-left">Per guest <span class="omkc-dine">Dine-In Only</span></span><span class="omkc-price-inline">$68</span></p>
@@ -637,9 +648,9 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
     <div class="omkc-row"><span class="omkc-label">Course One</span><span class="omkc-text">Hamachi Toro Yuzu Dashi</span></div>
     <div class="omkc-row"><span class="omkc-label">Course Two</span><span class="omkc-text">Seven-Piece Nigiri &mdash; Madai, Kanpachi, Salmon, Akami, Shima Aji, Sawara, Lightly Torched Sablefish; to finish, Salmon Ikura Temaki</span></div>
     <div class="omkc-row"><span class="omkc-label">Course Three</span><span class="omkc-text">Gelato</span></div>
+    </div>
 
-    <div class="omkc-divider"></div>
-
+    <div class="omk-slide" id="slide-karaage">
     <p class="omkc-eyebrow">Summer Special</p>
     <h2 class="omkc-title"><em>Karaage</em> &amp; Asahi</h2>
     <p class="omkc-sub">Crispy spicy karaage, ice-cold Asahi draft <span class="omkc-dine">Dine-In Only</span></p>
@@ -648,7 +659,30 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
     <div class="omkc-row"><span class="omkc-label">Double</span><span class="omkc-text">10pc Karaage + Asahi Draft &times;2</span><span class="omkc-price2">$29</span></div>
     </div>
 
+    <div class="omk-slide" id="slide-sushi">
+    <p class="omkc-eyebrow">Summer Special</p>
+    <h2 class="omkc-title">Summer Sushi &amp; Draft Set</h2>
+    <p class="omkc-sub"><span class="omkc-sub-left">Per guest <span class="omkc-dine">Dine-In Only</span></span><span class="omkc-price-inline">$29</span></p>
+    <div class="omkc-row"><span class="omkc-label">The Nigiri</span><span class="omkc-text">Seven pieces &mdash; Branzino, Dorade, Kanpachi, Sawara, Ikura, King Salmon, Sable</span></div>
+    <div class="omkc-row"><span class="omkc-label">Served With</span><span class="omkc-text">12oz Asahi Draft Beer</span></div>
+    </div>
+
+    <div class="omk-slide" id="slide-sake">
+    <p class="omkc-eyebrow">Summer Special</p>
+    <h2 class="omkc-title">Sake &amp; Cocktail</h2>
+    <p class="omkc-sub">Limited time only <span class="omkc-dine">Dine-In Only</span></p>
+    <div class="omkc-row"><span class="omkc-label">Sake</span><span class="omkc-text">Tokusen Koshi no Kanbai &mdash; clean, crisp, and dry</span><span class="omkc-price2">$7/$21/$34</span></div>
+    <div class="omkc-row"><span class="omkc-label">Sake</span><span class="omkc-text">Hoyo "Sawayaka" &mdash; bright, juicy, refreshing finish</span><span class="omkc-price2">$7/$21/$34</span></div>
+    <div class="omkc-row"><span class="omkc-label">Cocktail</span><span class="omkc-text">Ruby &mdash; Campari, grapefruit, gin, grenadine, tonic</span><span class="omkc-price2">$9</span></div>
+    </div>
+
     <div class="omk-footer">
+      <div class="omk-pager">
+        <button class="active" onclick="omkGoto('omakase', this)" aria-label="Show Omakase"></button>
+        <button onclick="omkGoto('karaage', this)" aria-label="Show Karaage &amp; Asahi"></button>
+        <button onclick="omkGoto('sushi', this)" aria-label="Show Summer Sushi &amp; Draft Set"></button>
+        <button onclick="omkGoto('sake', this)" aria-label="Show Sake &amp; Cocktail"></button>
+      </div>
       <p class="omk-note">Available Wednesdays &amp; Thursdays, while supplies last.</p>
       <div class="omk-footer-btns">
         <a href="menu.html" class="btn-terra" style="text-align:center;" onclick="closeOmk()">View Full Menu</a>
@@ -661,6 +695,13 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
 <script>
 function closeOmk(){document.getElementById('omkPopup').classList.remove('open');document.body.style.overflow='';}
+function omkGoto(name, btn){
+  document.querySelectorAll('.omk-slide').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('slide-'+name).classList.add('active');
+  document.querySelectorAll('.omk-pager button').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelector('.omk-card-inner').scrollTop = 0;
+}
 window.addEventListener('load', function(){
   setTimeout(function(){
     document.getElementById('omkPopup').classList.add('open');
