@@ -136,7 +136,12 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 }
 
 /* WED/THU PROMO CARD */
-.promo-card{position:relative;max-width:600px;margin:0 auto 3.5rem;background:var(--cream);border:1px solid rgba(44,31,20,0.1);border-radius:6px;padding:1.8rem 2rem;box-shadow:0 4px 18px rgba(44,31,20,0.06);}
+.promo-section{max-width:1180px;margin:0 auto 3.5rem;}
+.promo-section-head{position:relative;text-align:center;margin-bottom:1.6rem;}
+.promo-new-badge-static{display:inline-block;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--cream);background:var(--terra);padding:0.28rem 0.7rem;border-radius:100px;margin-bottom:0.6rem;}
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.3rem;}
+.promo-item{background:var(--cream);border:1px solid rgba(44,31,20,0.1);border-radius:6px;padding:1.5rem 1.5rem 1.6rem;box-shadow:0 4px 14px rgba(44,31,20,0.05);}
+@media(max-width:640px){.promo-section-head{text-align:left;}.promo-grid{grid-template-columns:1fr;}}
 .promoc-eyebrow{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.25rem;text-align:left;}
 .promoc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--brown);line-height:1.15;text-align:left;margin-bottom:0.2rem;}
 .promoc-title em{color:var(--gold);font-style:italic;}
@@ -148,8 +153,8 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 .promoc-text{flex:1;font-size:0.82rem;color:rgba(44,31,20,0.72);line-height:1.45;}
 .promoc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--terra);}
 .promoc-divider{height:1px;background:rgba(44,31,20,0.14);margin:1.1rem 0 0.9rem;}
-.promo-new-badge{position:absolute;top:-0.7rem;right:1.4rem;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--cream);background:var(--terra);padding:0.32rem 0.7rem;border-radius:100px;box-shadow:0 3px 10px rgba(196,98,45,0.35);}
-@media(max-width:600px){.promo-card{padding:1.4rem 1.4rem;}.promoc-title{font-size:1.2rem;}}
+
+@media(max-width:600px){.promoc-title{font-size:1.2rem;}}
 .badge-new{display:inline-block;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--terra);padding:0.14rem 0.45rem;border-radius:3px;vertical-align:middle;}
 </style>
 
@@ -211,46 +216,48 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 </div>
 
 <div class="menu-body">
-  <div class="promo-card" id="new">
-    <span class="promo-new-badge">New</span>
-    <p class="promoc-eyebrow" style="font-size:0.62rem;">Summer Specials</p>
-    <p class="promoc-sub" style="margin-bottom:0.7rem;">Through August <span class="promoc-dine">Dine-in</span></p>
-    <div class="promoc-divider" style="margin:0 0 1rem;"></div>
+  <section class="promo-section" id="new">
+    <div class="promo-section-head">
+      <span class="promo-new-badge-static">New</span>
+      <p class="promoc-eyebrow" style="font-size:0.62rem;">Summer Specials</p>
+      <p class="promoc-sub" style="margin-bottom:0;">Through August <span class="promoc-dine">Dine-in Only</span></p>
+    </div>
+    <div class="promo-grid">
+      <div class="promo-item">
+        <p class="promoc-eyebrow">Wednesday &amp; Thursday</p>
+        <h3 class="promoc-title">Chef's Midweek <em>Omakase</em> <span class="promoc-price">$68</span></h3>
+        <p class="promoc-sub">Per guest</p>
+        <div class="promoc-row"><span class="promoc-label">Course One</span><span class="promoc-text">Hamachi Toro Yuzu Dashi</span></div>
+        <div class="promoc-row"><span class="promoc-label">Course Two</span><span class="promoc-text">Seven-Piece Nigiri &mdash; Madai, Kanpachi, Salmon, Akami, Shima Aji, Sawara, Lightly Torched Sablefish; to finish, Salmon Ikura Temaki</span></div>
+        <div class="promoc-row"><span class="promoc-label">Course Three</span><span class="promoc-text">Gelato</span></div>
+      </div>
 
-    <p class="promoc-eyebrow">Wednesday &amp; Thursday</p>
-    <h3 class="promoc-title">Chef's Midweek <em>Omakase</em> <span class="promoc-price">$68</span></h3>
-    <p class="promoc-sub">Per guest <span class="promoc-dine">Dine-in</span></p>
+      <div class="promo-item">
+        <p class="promoc-eyebrow">Summer Special</p>
+        <h3 class="promoc-title"><em>Karaage</em> &amp; Asahi</h3>
+        <p class="promoc-sub">Crispy spicy karaage, ice-cold Asahi draft</p>
+        <div class="promoc-row"><span class="promoc-label">Single</span><span class="promoc-text">6pc Karaage + Asahi Draft &times;1</span><span class="promoc-price2">$17</span></div>
+        <div class="promoc-row"><span class="promoc-label">Double</span><span class="promoc-text">10pc Karaage + Asahi Draft &times;2</span><span class="promoc-price2">$29</span></div>
+      </div>
 
-    <div class="promoc-row"><span class="promoc-label">Course One</span><span class="promoc-text">Hamachi Toro Yuzu Dashi</span></div>
-    <div class="promoc-row"><span class="promoc-label">Course Two</span><span class="promoc-text">Seven-Piece Nigiri &mdash; Madai, Kanpachi, Salmon, Akami, Shima Aji, Sawara, Lightly Torched Sablefish; to finish, Salmon Ikura Temaki</span></div>
-    <div class="promoc-row"><span class="promoc-label">Course Three</span><span class="promoc-text">Gelato</span></div>
+      <div class="promo-item">
+        <p class="promoc-eyebrow">Summer Special</p>
+        <h3 class="promoc-title">Summer Sushi &amp; Draft Set <span class="promoc-price">$29</span></h3>
+        <p class="promoc-sub">Per guest</p>
+        <div class="promoc-row"><span class="promoc-label">The Nigiri</span><span class="promoc-text">Seven pieces &mdash; Branzino, Dorade, Kanpachi, Sawara, Ikura, King Salmon, Sable</span></div>
+        <div class="promoc-row"><span class="promoc-label">Served With</span><span class="promoc-text">12oz Asahi Draft Beer</span></div>
+      </div>
 
-    <div class="promoc-divider"></div>
-
-    <p class="promoc-eyebrow">Summer Special</p>
-    <h3 class="promoc-title"><em>Karaage</em> &amp; Asahi</h3>
-    <p class="promoc-sub">Crispy spicy karaage, ice-cold Asahi draft <span class="promoc-dine">Dine-in</span></p>
-
-    <div class="promoc-row"><span class="promoc-label">Single</span><span class="promoc-text">6pc Karaage + Asahi Draft &times;1</span><span class="promoc-price2">$17</span></div>
-    <div class="promoc-row"><span class="promoc-label">Double</span><span class="promoc-text">10pc Karaage + Asahi Draft &times;2</span><span class="promoc-price2">$29</span></div>
-
-    <div class="promoc-divider"></div>
-
-    <p class="promoc-eyebrow">Summer Special</p>
-    <h3 class="promoc-title">Summer Sushi &amp; Draft Set <span class="promoc-price">$29</span></h3>
-    <p class="promoc-sub">Per guest <span class="promoc-dine">Dine-in</span></p>
-    <div class="promoc-row"><span class="promoc-label">The Nigiri</span><span class="promoc-text">Seven pieces &mdash; Branzino, Dorade, Kanpachi, Sawara, Ikura, King Salmon, Sable</span></div>
-    <div class="promoc-row"><span class="promoc-label">Served With</span><span class="promoc-text">12oz Asahi Draft Beer</span></div>
-
-    <div class="promoc-divider"></div>
-
-    <p class="promoc-eyebrow">Summer Special</p>
-    <h3 class="promoc-title">Sake &amp; Cocktail</h3>
-    <p class="promoc-sub">Limited time only <span class="promoc-dine">Dine-in</span></p>
-    <div class="promoc-row"><span class="promoc-label">Sake</span><span class="promoc-text">Tokusen Koshi no Kanbai &mdash; clean, crisp, and dry</span><span class="promoc-price2">$7/$21/$34</span></div>
-    <div class="promoc-row"><span class="promoc-label">Sake</span><span class="promoc-text">Hoyo "Sawayaka" &mdash; bright, juicy, refreshing finish</span><span class="promoc-price2">$7/$21/$34</span></div>
-    <div class="promoc-row"><span class="promoc-label">Cocktail</span><span class="promoc-text">Ruby &mdash; Campari, grapefruit, gin, grenadine, tonic</span><span class="promoc-price2">$9</span></div>
-  </div>
+      <div class="promo-item">
+        <p class="promoc-eyebrow">Summer Special</p>
+        <h3 class="promoc-title">Sake &amp; Cocktail</h3>
+        <p class="promoc-sub">Limited time only</p>
+        <div class="promoc-row"><span class="promoc-label">Sake</span><span class="promoc-text">Tokusen Koshi no Kanbai &mdash; clean, crisp, and dry</span><span class="promoc-price2">$7/$21/$34</span></div>
+        <div class="promoc-row"><span class="promoc-label">Sake</span><span class="promoc-text">Hoyo "Sawayaka" &mdash; bright, juicy, refreshing finish</span><span class="promoc-price2">$7/$21/$34</span></div>
+        <div class="promoc-row"><span class="promoc-label">Cocktail</span><span class="promoc-text">Ruby &mdash; Campari, grapefruit, gin, grenadine, tonic</span><span class="promoc-price2">$9</span></div>
+      </div>
+    </div>
+  </section>
 
   <div class="tabs">
     <button class="tab on" onclick="setTab('appetizers',this)">Appetizers</button>
