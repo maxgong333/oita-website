@@ -332,7 +332,6 @@ footer {
 .omkc-text{flex:1;font-size:0.78rem;color:rgba(44,31,20,0.72);line-height:1.4;}
 .omkc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--terra);}
 .omkc-divider{height:1px;background:rgba(44,31,20,0.14);margin:0.6rem 0 0.5rem;}
-.omk-intro{flex-shrink:0;padding:1.6rem 2.2rem 0.9rem;border-bottom:1px solid rgba(44,31,20,0.1);}
 .omk-pager{display:flex;justify-content:center;gap:0.5rem;margin-bottom:0.7rem;}
 .omkc-cocktail-photo{width:100%;aspect-ratio:4/3;border-radius:6px;overflow:hidden;margin-bottom:1rem;background:var(--beige2);}
 .omkc-cocktail-photo img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -599,12 +598,17 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 <div class="omk-overlay" id="omkPopup" onclick="if(event.target===this)closeOmk()">
   <div class="omk-card">
     <button class="omk-close" onclick="closeOmk()" aria-label="Close">&times;</button>
-    <div class="omk-intro">
-      <p class="omkc-eyebrow" style="font-size:0.62rem;">Summer Specials</p>
-      <p class="omkc-sub" style="margin-bottom:0;">Through August <span class="omkc-dine">Dine-In Only</span></p>
-    </div>
     <div class="omk-card-inner">
     <div class="omk-slides-track">
+    <div class="omk-slide" id="slide-vacation">
+    <p class="omkc-eyebrow">Notice</p>
+    <h2 class="omkc-title">Summer Break</h2>
+    <p class="omkc-sub">We will be closed for summer vacation</p>
+    <div class="omkc-row"><span class="omkc-label">Closed</span><span class="omkc-text">August 23 &ndash; August 31</span></div>
+    <div class="omkc-row"><span class="omkc-label">Reopening</span><span class="omkc-text">September 1</span></div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:rgba(44,31,20,0.5);margin-top:0.9rem;">Thank you for your patience &mdash; see you soon!</p>
+    </div>
+
     <div class="omk-slide" id="slide-sushi">
     <p class="omkc-eyebrow">Summer Special</p>
     <h2 class="omkc-title">Summer Sushi &amp; Draft Set</h2>
@@ -651,7 +655,8 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
     <div class="omk-footer">
       <div class="omk-pager">
-        <button class="active" onclick="omkGoto('sushi', this)" aria-label="Show Summer Sushi &amp; Draft Set"></button>
+        <button class="active" onclick="omkGoto('vacation', this)" aria-label="Show Summer Break Notice"></button>
+        <button onclick="omkGoto('sushi', this)" aria-label="Show Summer Sushi &amp; Draft Set"></button>
         <button onclick="omkGoto('omakase', this)" aria-label="Show Omakase"></button>
         <button onclick="omkGoto('karaage', this)" aria-label="Show Karaage &amp; Asahi"></button>
         <button onclick="omkGoto('sake', this)" aria-label="Show Summer Sake"></button>
@@ -669,7 +674,7 @@ document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
 <script>
 function closeOmk(){document.getElementById('omkPopup').classList.remove('open');document.body.style.overflow='';}
-var OMK_SLIDES = ['sushi','omakase','karaage','sake','cocktail'];
+var OMK_SLIDES = ['vacation','sushi','omakase','karaage','sake','cocktail'];
 function omkFitToIndex(idx){
   var track = document.querySelector('.omk-slides-track');
   var cardInner = document.querySelector('.omk-card-inner');
