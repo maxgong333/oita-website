@@ -135,26 +135,6 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
   padding: 0.5rem 1rem;
 }
 
-/* WED/THU PROMO CARD */
-.promo-section{max-width:1180px;margin:0 auto 3.5rem;}
-.promo-section-head{position:relative;text-align:center;margin-bottom:1.6rem;}
-.promo-new-badge-static{display:inline-block;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--cream);background:var(--terra);padding:0.28rem 0.7rem;border-radius:100px;margin-bottom:0.6rem;}
-.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.3rem;}
-.promo-item{background:var(--cream);border:1px solid rgba(44,31,20,0.1);border-radius:6px;padding:1.5rem 1.5rem 1.6rem;box-shadow:0 4px 14px rgba(44,31,20,0.05);}
-@media(max-width:640px){.promo-section-head{text-align:left;}.promo-grid{grid-template-columns:1fr;}}
-.promoc-eyebrow{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.25rem;text-align:left;}
-.promoc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--brown);line-height:1.15;text-align:left;margin-bottom:0.2rem;}
-.promoc-title em{color:var(--gold);font-style:italic;}
-.promoc-title .promoc-price{float:right;color:var(--terra);font-size:1.65rem;font-weight:700;}
-.promoc-sub{font-size:0.75rem;color:rgba(44,31,20,0.5);text-align:left;margin-bottom:0.5rem;line-height:1.4;}
-.promoc-dine{display:inline-block;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:700;background:rgba(196,98,45,0.1);padding:0.14rem 0.5rem;border-radius:100px;margin-left:0.4rem;}
-.promoc-row{display:flex;align-items:baseline;gap:0.6rem;padding:0.5rem 0;border-top:1px solid rgba(44,31,20,0.07);text-align:left;}
-.promoc-label{flex:0 0 auto;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(44,31,20,0.4);font-weight:700;width:5rem;}
-.promoc-text{flex:1;font-size:0.82rem;color:rgba(44,31,20,0.72);line-height:1.45;}
-.promoc-price2{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--terra);}
-.promoc-divider{height:1px;background:rgba(44,31,20,0.14);margin:1.1rem 0 0.9rem;}
-
-@media(max-width:600px){.promoc-title{font-size:1.2rem;}}
 .badge-new{display:inline-block;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--terra);padding:0.14rem 0.45rem;border-radius:3px;vertical-align:middle;}
 </style>
 
@@ -216,49 +196,6 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
 </div>
 
 <div class="menu-body">
-  <section class="promo-section" id="new">
-    <div class="promo-section-head">
-      <span class="promo-new-badge-static">New</span>
-      <p class="promoc-eyebrow" style="font-size:0.62rem;">Summer Specials</p>
-      <p class="promoc-sub" style="margin-bottom:0;">Through August <span class="promoc-dine">Dine-in Only</span></p>
-    </div>
-    <div class="promo-grid">
-      <div class="promo-item">
-        <p class="promoc-eyebrow">Summer Special</p>
-        <h3 class="promoc-title">Summer Sushi &amp; Draft Set <span class="promoc-price">$29</span></h3>
-        <p class="promoc-sub">Per guest</p>
-        <div class="promoc-row"><span class="promoc-label">The Nigiri</span><span class="promoc-text">Seven pieces &mdash; Branzino, Dorade, Kanpachi, Sawara, Ikura, King Salmon, Sable</span></div>
-        <div class="promoc-row"><span class="promoc-label">Served With</span><span class="promoc-text">12oz Asahi Draft Beer</span></div>
-      </div>
-
-      <div class="promo-item">
-        <p class="promoc-eyebrow">Wednesday &amp; Thursday</p>
-        <h3 class="promoc-title">Chef's Midweek <em>Omakase</em> <span class="promoc-price">$68</span></h3>
-        <p class="promoc-sub">Per guest</p>
-        <div class="promoc-row"><span class="promoc-label">Course One</span><span class="promoc-text">Hamachi Toro Yuzu Dashi</span></div>
-        <div class="promoc-row"><span class="promoc-label">Course Two</span><span class="promoc-text">Seven-Piece Nigiri &mdash; Madai, Kanpachi, Salmon, Akami, Shima Aji, Sawara, Lightly Torched Sablefish; to finish, Salmon Ikura Temaki</span></div>
-        <div class="promoc-row"><span class="promoc-label">Course Three</span><span class="promoc-text">Gelato</span></div>
-      </div>
-
-      <div class="promo-item">
-        <p class="promoc-eyebrow">Summer Special</p>
-        <h3 class="promoc-title"><em>Karaage</em> &amp; Asahi</h3>
-        <p class="promoc-sub">Crispy spicy karaage, ice-cold Asahi draft</p>
-        <div class="promoc-row"><span class="promoc-label">Single</span><span class="promoc-text">6pc Karaage + Asahi Draft &times;1</span><span class="promoc-price2">$17</span></div>
-        <div class="promoc-row"><span class="promoc-label">Double</span><span class="promoc-text">10pc Karaage + Asahi Draft &times;2</span><span class="promoc-price2">$29</span></div>
-      </div>
-
-      <div class="promo-item">
-        <p class="promoc-eyebrow">Summer Special</p>
-        <h3 class="promoc-title">Sake &amp; Cocktail</h3>
-        <p class="promoc-sub">Limited time only</p>
-        <div class="promoc-row"><span class="promoc-label">Sake</span><span class="promoc-text">Tokusen Koshi no Kanbai &mdash; clean, crisp, and dry</span><span class="promoc-price2">$7/$21/$34</span></div>
-        <div class="promoc-row"><span class="promoc-label">Sake</span><span class="promoc-text">Hoyo "Sawayaka" &mdash; bright, juicy, refreshing finish</span><span class="promoc-price2">$7/$21/$34</span></div>
-        <div class="promoc-row"><span class="promoc-label">Cocktail</span><span class="promoc-text">Ruby &mdash; Campari, grapefruit, gin, grenadine, tonic</span><span class="promoc-price2">$9</span></div>
-      </div>
-    </div>
-  </section>
-
   <div class="tabs">
     <button class="tab on" onclick="setTab('appetizers',this)">Appetizers</button>
     <button class="tab" onclick="setTab('rolls',this)">Sushi Rolls</button>
@@ -284,8 +221,8 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
           <div style="padding:0.6rem 0 0 0.2rem;">
             <p style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.5rem;">Add-Ons for Miso Soup</p>
             <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;border-bottom:1px solid rgba(44,31,20,0.05);"><span style="font-size:0.85rem;color:rgba(44,31,20,0.7);">Extra Tofu</span><span style="font-size:0.85rem;color:var(--gold);">+$1</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;border-bottom:1px solid rgba(44,31,20,0.05);"><span style="font-size:0.85rem;color:rgba(44,31,20,0.7);">Shitake</span><span style="font-size:0.85rem;color:var(--gold);">+$2</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;border-bottom:1px solid rgba(44,31,20,0.05);"><span style="font-size:0.85rem;color:rgba(44,31,20,0.7);">Enoki <span class="badge-new">New</span></span><span style="font-size:0.85rem;color:var(--gold);">+$2</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;border-bottom:1px solid rgba(44,31,20,0.05);"><span style="font-size:0.85rem;color:rgba(44,31,20,0.7);">Shiitake</span><span style="font-size:0.85rem;color:var(--gold);">+$2</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;border-bottom:1px solid rgba(44,31,20,0.05);"><span style="font-size:0.85rem;color:rgba(44,31,20,0.7);">Enoki</span><span style="font-size:0.85rem;color:var(--gold);">+$2</span></div>
             <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;"><span style="font-size:0.85rem;color:rgba(44,31,20,0.7);">Inari (Seasoned Sweet Tofu)</span><span style="font-size:0.85rem;color:var(--gold);">+$2</span></div>
           </div>
         </div>
@@ -299,7 +236,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
         <div class="mrow"><div><div class="mname">House Salad <span class="badge badge-gf">GF</span> <span class="badge badge-v">V</span></div><div class="mdesc">Mixed greens, grape tomatoes, radish, carrot ginger dressing</div></div><div class="mprice">$7</div></div>
       </div>
       <div>
-        <div class="mrow"><div><div class="mname">Avocado Salad <span class="badge badge-gf">GF</span> <span class="badge badge-v">V</span> <span class="badge-new">New</span></div><div class="mdesc">Mixed greens, avocado, grape tomatoes, radish, carrot ginger dressing</div></div><div class="mprice">$8</div></div>
+        <div class="mrow"><div><div class="mname">Avocado Salad <span class="badge badge-gf">GF</span> <span class="badge badge-v">V</span></div><div class="mdesc">Mixed greens, avocado, grape tomatoes, radish, carrot ginger dressing</div></div><div class="mprice">$8</div></div>
       </div>
     </div>
 
@@ -467,9 +404,9 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
         <div class="mrow"><div><div class="mname">Pasture-Raised Chicken Katsu &amp; Mini Udon</div></div><div class="mprice">$24</div></div>
       </div>
       <div>
-        <div class="mrow"><div><div class="mname">Spicy Chicken Karaage (4pc) &amp; Hot Udon <span class="badge-new">New</span></div><div class="mdesc">Warm udon in house-made broth with pasture-raised chicken karaage</div></div><div class="mprice">$23</div></div>
-        <div class="mrow"><div><div class="mname">Shrimp Tempura (3pc) &amp; Hot Udon <span class="badge-new">New</span></div><div class="mdesc">Warm udon in house-made broth with crispy shrimp tempura</div></div><div class="mprice">$22</div></div>
-        <div class="mrow"><div><div class="mname">Kabocha Tempura (5pc) &amp; Hot Udon <span class="badge-new">New</span></div><div class="mdesc">Warm udon in house-made broth with crispy kabocha tempura</div></div><div class="mprice">$20</div></div>
+        <div class="mrow"><div><div class="mname">Spicy Chicken Karaage (4pc) &amp; Hot Udon</div><div class="mdesc">Warm udon in house-made broth with pasture-raised chicken karaage</div></div><div class="mprice">$23</div></div>
+        <div class="mrow"><div><div class="mname">Shrimp Tempura (3pc) &amp; Hot Udon</div><div class="mdesc">Warm udon in house-made broth with crispy shrimp tempura</div></div><div class="mprice">$22</div></div>
+        <div class="mrow"><div><div class="mname">Kabocha Tempura (5pc) &amp; Hot Udon</div><div class="mdesc">Warm udon in house-made broth with crispy kabocha tempura</div></div><div class="mprice">$20</div></div>
       </div>
     </div>
 
@@ -478,15 +415,15 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
       <div>
         <div class="mrow"><div><div class="mname">Cold Soba</div><div class="mdesc">Cold buckwheat soba with house-made tsuyu, scallions, and wasabi</div></div><div class="mprice">$18</div></div>
         <div class="mrow"><div><div class="mname">Kabocha Squash Tempura (5pc) &amp; Cold Soba</div><div class="mdesc">Cold soba with kabocha squash tempura and traditional tsuyu</div></div><div class="mprice">$22</div></div>
-        <div class="mrow"><div><div class="mname">Chicken Katsu (4pc) &amp; Cold Soba <span class="badge-new">New</span></div><div class="mdesc">Cold soba in chilled tsuyu-dashi broth with crispy pasture-raised chicken katsu</div></div><div class="mprice">$24</div></div>
+        <div class="mrow"><div><div class="mname">Chicken Katsu (4pc) &amp; Cold Soba</div><div class="mdesc">Cold soba in chilled tsuyu-dashi broth with crispy pasture-raised chicken katsu</div></div><div class="mprice">$24</div></div>
       </div>
       <div>
-        <div class="mrow"><div><div class="mname">Spicy Chicken Karaage (4pc) &amp; Cold Soba <span class="badge-new">New</span></div><div class="mdesc">Cold soba in chilled tsuyu-dashi broth with pasture-raised chicken karaage</div></div><div class="mprice">$23</div></div>
+        <div class="mrow"><div><div class="mname">Spicy Chicken Karaage (4pc) &amp; Cold Soba</div><div class="mdesc">Cold soba in chilled tsuyu-dashi broth with pasture-raised chicken karaage</div></div><div class="mprice">$23</div></div>
         <div class="mrow"><div><div class="mname">Shrimp Tempura (3pc) &amp; Cold Soba</div><div class="mdesc">Cold soba in chilled tsuyu-dashi broth with crispy shrimp tempura</div></div><div class="mprice">$22</div></div>
       </div>
     </div>
 
-    <p class="menu-cat" style="margin-top:2rem;">Cold Udon <span class="badge-new">New</span></p>
+    <p class="menu-cat" style="margin-top:2rem;">Cold Udon</p>
     <div class="mgrid">
       <div>
         <div class="mrow"><div><div class="mname">Spicy Chicken Karaage (4pc) &amp; Cold Udon</div><div class="mdesc">Cold udon in chilled tsuyu-dashi broth with pasture-raised chicken karaage</div></div><div class="mprice">$23</div></div>
@@ -497,17 +434,17 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
       </div>
     </div>
 
-    <p class="menu-cat" style="margin-top:2rem;">Yakitori <span class="badge-new">New</span></p>
+    <p class="menu-cat" style="margin-top:2rem;">Yakitori</p>
     <div class="mgrid">
       <div>
-        <div class="mrow"><div><div class="mname">Grilled Chicken Yakitori (5 Skewers)</div><div class="mdesc">Pasture-raised chicken skewers, grilled, served with house-made tare sauce, shishito peppers, and cherry tomatoes</div></div><div class="mprice">$18</div></div>
-        <div class="mrow"><div><div class="mname">Chicken Yakitori Set (3 Skewers)</div><div class="mdesc">Crispy pasture-raised chicken glazed with our house-made tare sauce</div></div><div class="mprice">$11</div></div>
-        <div class="mrow"><div><div class="mname">Chicken Yakitori (1 Skewer)</div><div class="mdesc">Crispy pasture-raised chicken glazed with our house-made tare sauce</div></div><div class="mprice">$4</div></div>
+        <div class="mrow"><div><div class="mname">Grilled Chicken Yakitori (5 Skewers)</div><div class="mdesc">Pasture-raised chicken skewers, grilled, served with house-made tare sauce, shishito peppers, and cherry tomatoes</div></div><div class="mprice">$19</div></div>
+        <div class="mrow"><div><div class="mname">Chicken Yakitori Set (3 Skewers)</div><div class="mdesc">Crispy pasture-raised chicken glazed with our house-made tare sauce</div></div><div class="mprice">$14</div></div>
+        <div class="mrow"><div><div class="mname">Chicken Yakitori (1 Skewer)</div><div class="mdesc">Crispy pasture-raised chicken glazed with our house-made tare sauce</div></div><div class="mprice">$5</div></div>
       </div>
       <div>
-        <div class="mrow"><div><div class="mname">Shitake Mushroom (1 Skewer)</div><div class="mdesc">Grilled shitake mushroom</div></div><div class="mprice">$2.75</div></div>
-        <div class="mrow"><div><div class="mname">Shishito Pepper (1 Skewer)</div><div class="mdesc">Grilled shishito peppers</div></div><div class="mprice">$2.75</div></div>
-        <div class="mrow"><div><div class="mname">Grape Tomato (1 Skewer)</div><div class="mdesc">Grilled grape tomatoes</div></div><div class="mprice">$2.75</div></div>
+        <div class="mrow"><div><div class="mname">Shiitake Mushroom (1 Skewer)</div><div class="mdesc">Grilled shiitake mushroom</div></div><div class="mprice">$3</div></div>
+        <div class="mrow"><div><div class="mname">Shishito Pepper (1 Skewer)</div><div class="mdesc">Grilled shishito peppers</div></div><div class="mprice">$3</div></div>
+        <div class="mrow"><div><div class="mname">Grape Tomato (1 Skewer)</div><div class="mdesc">Grilled grape tomatoes</div></div><div class="mprice">$3</div></div>
       </div>
     </div>
   </div>
@@ -557,6 +494,7 @@ footer{background:var(--brown);padding:3rem;display:flex;justify-content:space-b
     <div class="mgrid">
       <div>
         <div class="mrow"><div><div class="mname">Aperol Sake Spritz</div><div class="mdesc">Aperol, sake, sparkling wine, orange slice &amp; rosemary</div></div><div class="mprice">$15</div></div>
+        <div class="mrow"><div><div class="mname">Ruby</div><div class="mdesc">Campari, grapefruit, gin, grenadine and tonic water</div></div><div class="mprice">$15</div></div>
         <div class="mrow"><div><div class="mname">Yuzu Margarita</div><div class="mdesc">Tequila, triple sec, yuzu, agave — red pepper flake rim</div></div><div class="mprice">$17</div></div>
         <div class="mrow"><div><div class="mname">Lychee Martini</div><div class="mdesc">Vodka, triple sec, lychee wine, lemon, garnished with lychee</div></div><div class="mprice">$16</div></div>
         <div class="mrow"><div><div class="mname">Lemon Ginger Highball</div><div class="mdesc">Suntory Toki, triple sec, green tea, ginger ale, mint</div></div><div class="mprice">$16</div></div>
