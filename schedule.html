@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Schedule | Brooklyn Meditation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: var(--white);
+    }
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .day-col {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    .day-col .day-header {
+      padding: 14px 12px;
+      background: var(--primary-light);
+      text-align: center;
+    }
+    .day-col .day-header .weekday {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+    }
+    .day-col .class-item {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border);
+      display: block;
+      color: inherit;
+    }
+    .day-col .class-item:last-child {
+      border-bottom: none;
+    }
+    .day-col .class-item .time {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .day-col .class-item .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+    .booking-cta {
+      background: var(--dark);
+      border-radius: var(--border-radius);
+      padding: 56px 40px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .booking-cta h2 { color: var(--white); margin-bottom: 16px; }
+    .booking-cta p { color: rgba(255,255,255,0.7); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+    .booking-cta .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .inperson-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: 20px;
+      background: #F0E9DE;
+      color: #7A5C38;
+    }
+    .online-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: 20px;
+      background: #EAE8F0;
+      color: #4E3D7A;
+    }
+    .both-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: 20px;
+      background: #E8EEF4;
+      color: #2A4A6B;
+    }
+    .free-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: 20px;
+      background: #E8F4EC;
+      color: #2D7A4E;
+    }
+
+    /* ── Mobile Tab Schedule ── */
+    .mobile-schedule { display: none; margin-bottom: 48px; }
+
+    @media (max-width: 900px) {
+      .week-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .week-grid { display: none; }
+      .mobile-schedule { display: block; }
+    }
+
+    .day-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .day-tab {
+      flex: 1;
+      padding: 10px 4px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+      text-align: center;
+    }
+    .day-tab.active {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: var(--white);
+    }
+
+    .day-panel { display: none; }
+    .day-panel.active { display: block; }
+
+    .mobile-class-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .mobile-class-item.free-slot {
+      background: #F4FAF6;
+      border-color: #C5E2CE;
+    }
+    .mobile-class-time {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="logo.png" alt="Brooklyn Meditation" style="height:72px; width:auto;" />
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown"><a href="about.html">About ▾</a>
+        <div class="dropdown-menu">
+          <a href="about.html">Our Method</a>
+          <a href="about.html#founder">Founder</a>
+          <a href="about.html#experiences">Experiences</a>
+        </div>
+      </li>
+      <li class="dropdown"><a href="membership.html">Membership ▾</a>
+        <div class="dropdown-menu">
+          <a href="membership.html">Plans & Pricing</a>
+          <a href="schedule.html">Class Schedule</a>
+          <a href="membership.html#faq">FAQ</a>
+        </div>
+      </li>
+      <li class="dropdown"><a href="events.html">Events ▾</a>
+        <div class="dropdown-menu">
+          <a href="events.html#open">Open Sessions</a>
+          <a href="events.html#workshops">Workshops</a>
+          <a href="events.html#corporate">Corporate</a>
+        </div>
+      </li>
+      <li><a href="about.html#blog">Blog</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="schedule.html" class="btn btn-secondary" style="border-color:var(--primary); color:var(--primary-dark);">Schedule</a>
+      <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=76646&k_service=313512" target="_blank" class="btn btn-primary">Book Trial Session</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+  </ul>
+  <div class="mobile-nav-actions">
+    <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=76646&k_service=313512" target="_blank" class="btn btn-primary" style="justify-content:center;">Book Trial Session</a>
+  </div>
+</div>
+
+<div class="page-header">
+  <span class="section-label">Weekly Schedule</span>
+  <h1>Class Schedule</h1>
+  <p style="max-width:500px; margin:16px auto 0;">In-person at Park Slope and live online — find a time that works for you.</p>
+</div>
+
+<section style="background: var(--bg); padding: 48px 24px 64px;">
+  <div class="container">
+
+    <!-- Tab buttons -->
+    <div style="display:flex; gap:8px; margin-bottom:40px; background:var(--white); border:1px solid var(--border); border-radius:50px; padding:6px; width:fit-content;">
+      <button id="tab-schedule" onclick="switchTab('schedule')"
+        style="padding:12px 32px; border-radius:50px; border:none; cursor:pointer; font-family:var(--font-body); font-size:0.95rem; font-weight:600; background:var(--primary-dark); color:var(--white); transition:all 0.2s;">
+        Class Schedule
+      </button>
+      <button id="tab-book" onclick="switchTab('book')"
+        style="padding:12px 32px; border-radius:50px; border:none; cursor:pointer; font-family:var(--font-body); font-size:0.95rem; font-weight:600; background:transparent; color:var(--text-light); transition:all 0.2s;">
+        Book a Class
+      </button>
+    </div>
+
+    <!-- Tab: Schedule -->
+    <div id="panel-schedule">
+
+    <!-- 7 Day Center Schedule (Hybrid) -->
+    <div style="margin-bottom:56px;">
+      <h2 style="margin-bottom:8px;">7 Day Center Schedule</h2>
+      <p style="color:var(--text-light); margin-bottom:32px;">Hybrid classes — in-person at our Park Slope studio, simultaneously live on Zoom.</p>
+    </div>
+
+    <div class="week-grid">
+
+      <!-- MONDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Monday</div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">12:30 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">5:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">7:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+      <!-- TUESDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Tuesday</div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">12:30 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">5:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">7:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+      <!-- WEDNESDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Wednesday</div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">12:30 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">5:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">7:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+      <!-- THURSDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Thursday</div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">12:30 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">5:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">7:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+      <!-- FRIDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Friday</div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">12:30 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item" style="background:#F4FAF6;">
+          <div class="time">3:00 PM</div>
+          <div class="badge-row"><span class="free-badge">Free Session</span><span class="inperson-badge">In-Person</span></div>
+        </div>
+        <div class="class-item"><div class="time">5:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+      <!-- SATURDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Saturday</div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+      <!-- SUNDAY -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Sunday</div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item" style="background:#F4FAF6;">
+          <div class="time">11:00 AM</div>
+          <div class="badge-row"><span class="free-badge">Free Session</span><span class="inperson-badge">In-Person</span></div>
+        </div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="both-badge">Hybrid</span></div></div>
+      </div>
+
+    </div>
+
+    <!-- NA Virtual Group Classes -->
+    <div style="margin-top:72px; margin-bottom:32px;">
+      <h2 style="margin-bottom:8px;">North America Virtual Group Classes</h2>
+      <p style="color:var(--text-light); margin-bottom:32px;">Online-only classes connecting Brooklyn Meditation with North American meditation centers via Zoom.</p>
+    </div>
+
+    <div class="week-grid">
+      <!-- MON -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Monday</div></div>
+        <div class="class-item"><div class="time">7:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">8:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">11:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+      <!-- TUE -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Tuesday</div></div>
+        <div class="class-item"><div class="time">7:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">8:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">11:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+      <!-- WED -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Wednesday</div></div>
+        <div class="class-item"><div class="time">7:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">8:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">11:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+      <!-- THU -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Thursday</div></div>
+        <div class="class-item"><div class="time">7:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">8:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">11:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+      <!-- FRI -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Friday</div></div>
+        <div class="class-item"><div class="time">7:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">6:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">8:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">11:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+      <!-- SAT -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Saturday</div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+      <!-- SUN -->
+      <div class="day-col">
+        <div class="day-header"><div class="weekday">Sunday</div></div>
+        <div class="class-item"><div class="time">10:00 AM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">12:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">2:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">4:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+        <div class="class-item"><div class="time">9:00 PM</div><div class="badge-row"><span class="online-badge">Online</span></div></div>
+      </div>
+    </div>
+
+    <!-- Booking CTA (inside schedule tab) -->
+    <div class="booking-cta" style="margin-top:48px;">
+      <h2>Ready to Book?</h2>
+      <p>Switch to the "Book a Class" tab above to reserve your spot directly.</p>
+      <div class="btn-group">
+        <button onclick="switchTab('book')" class="btn btn-primary" style="font-size:1rem; padding:16px 36px; border:none; cursor:pointer;">
+          Book a Class →
+        </button>
+        <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=76646&k_service=313512" target="_blank" class="btn btn-secondary" style="font-size:1rem; padding:16px 36px; border-color:rgba(255,255,255,0.3); color:var(--white);">
+          Book Trial Session
+        </a>
+      </div>
+    </div>
+
+    </div><!-- end panel-schedule -->
+
+    <!-- Tab: Book a Class -->
+    <div id="panel-book" style="display:none;">
+      <div style="border-radius:var(--border-radius); overflow:hidden; border:1px solid var(--border); background:var(--white);">
+        <script type="module" src="https://widgets.wellnessliving.com/schedule/widget.js"></script>
+        <wl-schedule-widget k_business="760342" k_schema="01a04422-130f-7354-99cd-afdf07b23cb7"></wl-schedule-widget>
+      </div>
+    </div><!-- end panel-book -->
+
+  </div>
+</section>
+
+<script>
+function switchTab(tab) {
+  var schedulePanel = document.getElementById('panel-schedule');
+  var bookPanel = document.getElementById('panel-book');
+  var scheduleBtn = document.getElementById('tab-schedule');
+  var bookBtn = document.getElementById('tab-book');
+
+  if (tab === 'schedule') {
+    schedulePanel.style.display = 'block';
+    bookPanel.style.display = 'none';
+    scheduleBtn.style.background = 'var(--primary-dark)';
+    scheduleBtn.style.color = 'var(--white)';
+    bookBtn.style.background = 'transparent';
+    bookBtn.style.color = 'var(--text-light)';
+  } else {
+    schedulePanel.style.display = 'none';
+    bookPanel.style.display = 'block';
+    bookBtn.style.background = 'var(--primary-dark)';
+    bookBtn.style.color = 'var(--white)';
+    scheduleBtn.style.background = 'transparent';
+    scheduleBtn.style.color = 'var(--text-light)';
+  }
+}
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-name">Brooklyn Meditation</div>
+        <div class="brand-sub">Park Slope · Est. 2015</div>
+        <p>A guided meditation practice for lasting peace, clarity, and joy.</p>
+        <div class="footer-contact-info">
+          <a href="tel:7186221868">📞 (718) 622-1868</a>
+          <a href="mailto:info@bklynmeditation.com">✉ info@bklynmeditation.com</a>
+          <a href="https://maps.google.com/?q=833+Union+Street+Brooklyn+NY" target="_blank">📍 833 Union St, 2nd Floor, Park Slope 11215</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="about.html">Our Method</a></li>
+          <li><a href="about.html#founder">Founder</a></li>
+          <li><a href="about.html#team">Guides</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Membership</h5>
+        <ul>
+          <li><a href="membership.html">Plans & Pricing</a></li>
+          <li><a href="schedule.html">Class Schedule</a></li>
+          <li><a href="membership.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Events</h5>
+        <ul>
+          <li><a href="events.html#open">Free Open Sessions</a></li>
+          <li><a href="events.html#workshops">Workshops</a></li>
+          <li><a href="events.html#corporate">Corporate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Brooklyn Meditation. All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/bklynmeditation/" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/brooklyn.meditation/" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile day tabs
+  const tabs = document.querySelectorAll('.day-tab');
+  const panels = document.querySelectorAll('.day-panel');
+
+  function activateTab(day) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.day === day));
+    panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + day));
+  }
+
+  // Default: today → map to tab group
+  const todayNum = new Date().getDay(); // 0=Sun,1=Mon,...6=Sat
+  const defaultTab = (todayNum === 0) ? 'sun' : (todayNum === 6) ? 'sat' : (todayNum === 5) ? 'fri' : 'weekday';
+  activateTab(defaultTab);
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab.dataset.day));
+  });
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('mobileNavClose').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.body.style.overflow = '';
+  });
+</script>
+</body>
+</html>

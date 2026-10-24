@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events & Workshops | Brooklyn Meditation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .event-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 32px;
+      transition: var(--transition);
+    }
+    .event-card:hover {
+      box-shadow: 0 8px 32px rgba(44,36,22,0.10);
+    }
+    .event-card.reverse {
+      direction: rtl;
+    }
+    .event-card.reverse > * {
+      direction: ltr;
+    }
+    .event-img {
+      min-height: 280px;
+      overflow: hidden;
+    }
+    .event-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .event-card:hover .event-img img {
+      transform: scale(1.03);
+    }
+    .event-body {
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .event-body .event-time {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .event-body h3 { margin-bottom: 14px; }
+    .event-body p { margin-bottom: 24px; }
+    .event-body .tag-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tag-free { background: #E8F4EC; color: #2D7A4E; }
+    .tag-online { background: #EAE8F0; color: #4E3D7A; }
+    .tag-inperson { background: var(--primary-light); color: var(--primary-dark); }
+    .tag-corporate { background: #F0EDE8; color: #5A4A35; }
+
+    .open-session-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .open-session-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius);
+      padding: 40px 36px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .open-session-card:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .open-session-card .day {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+    .open-session-card .time {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .open-session-card p {
+      font-size: 0.9rem;
+    }
+
+    .corporate-section {
+      background: var(--dark);
+      color: var(--white);
+    }
+    .corporate-section h2,
+    .corporate-section h3 { color: var(--white); }
+    .corporate-section p { color: rgba(255,255,255,0.72); }
+    .corporate-section .section-label { color: var(--primary); }
+
+    .corporate-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .corporate-feature {
+      padding: 28px 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--border-radius);
+    }
+    .corporate-feature h4 { color: var(--white); margin-bottom: 8px; font-size: 1rem; }
+
+    @media (max-width: 768px) {
+      .event-card,
+      .event-card.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+      }
+      .event-img {
+        min-height: 200px;
+      }
+      .event-body {
+        padding: 32px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="logo.png" alt="Brooklyn Meditation" style="height:72px; width:auto;" />
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown"><a href="about.html">About ▾</a>
+        <div class="dropdown-menu">
+          <a href="about.html">Our Method</a>
+          <a href="about.html#founder">Founder</a>
+          <a href="about.html#experiences">Experiences</a>
+        </div>
+      </li>
+      <li class="dropdown"><a href="membership.html">Membership ▾</a>
+        <div class="dropdown-menu">
+          <a href="membership.html">Plans & Pricing</a>
+          <a href="schedule.html">Class Schedule</a>
+          <a href="membership.html#faq">FAQ</a>
+        </div>
+      </li>
+      <li class="dropdown"><a href="events.html" style="color:var(--primary-dark)">Events ▾</a>
+        <div class="dropdown-menu">
+          <a href="events.html#open">Open Sessions</a>
+          <a href="events.html#workshops">Workshops</a>
+          <a href="events.html#online">Free Online Series</a>
+          <a href="events.html#corporate">Corporate</a>
+        </div>
+      </li>
+      <li><a href="about.html#blog">Blog</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <a href="schedule.html" class="btn btn-secondary">Schedule</a>
+      <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=76646&k_service=313512" target="_blank" class="btn btn-primary">Book Trial Session</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+  </ul>
+  <div class="mobile-nav-actions">
+    <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=76646&k_service=313512" target="_blank" class="btn btn-primary" style="justify-content:center;">Book Trial Session</a>
+  </div>
+</div>
+
+<div class="page-header">
+  <span class="section-label">Events & Workshops</span>
+  <h1>Join the Community</h1>
+  <p style="max-width:520px; margin:16px auto 0;">From free open sessions to deep-dive workshops — there's always something to support your practice.</p>
+</div>
+
+<!-- ── Free Open Sessions ── -->
+<section id="open" style="background: var(--bg); padding: 80px 24px;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Open to Everyone</span>
+      <h2>Free Open Meditation Sessions</h2>
+      <p>No experience needed. No registration required. Just come and sit — it's that simple.</p>
+    </div>
+    <div class="open-session-grid">
+      <div class="open-session-card">
+        <div class="day">Friday</div>
+        <div class="time">3:00 PM</div>
+        <p>In-person at the studio. Come as you are, leave lighter than you arrived.</p>
+        <a href="https://www.wellnessliving.com/schedule/brooklyn_meditation?id_class_tab=1&k_class=1032032" target="_blank" class="btn btn-primary" style="margin-top:20px;">Register</a>
+      </div>
+      <div class="open-session-card">
+        <div class="day">Sunday</div>
+        <div class="time">11:00 AM</div>
+        <p>Start your Sunday with stillness. A 60-minute guided session open to all.</p>
+        <a href="https://www.wellnessliving.com/schedule/brooklyn_meditation?id_class_tab=1&k_class=1032032" target="_blank" class="btn btn-primary" style="margin-top:20px;">Register</a>
+      </div>
+    </div>
+    <div style="background:var(--white); border-radius:var(--border-radius); padding:36px 40px; margin-top:40px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+      <div>
+        <strong style="font-size:1rem; color:var(--dark);">Location:</strong>
+        <p style="margin-top:4px;">833 Union Street, 2nd Floor, Park Slope, Brooklyn 11215</p>
+      </div>
+      <a href="https://maps.google.com/?q=833+Union+Street+Brooklyn+NY" target="_blank" class="btn btn-secondary">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── Free Online Series ── -->
+<section id="online" style="background: var(--primary-light); padding: 80px 24px;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Free Online</span>
+      <h2>Free Online Meditation Series</h2>
+      <p>Access our growing library of free online content — guided sessions, talks, and resources available to everyone.</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:24px; margin-top:48px;">
+      <div class="card" style="padding:32px;">
+        <div style="font-size:2rem; margin-bottom:16px;">🧘</div>
+        <h4 style="margin-bottom:10px;">Live Guided Classes &amp; Workshops</h4>
+        <p style="font-size:0.9rem;">Join live guided meditation classes and workshops with practitioners from around the world.</p>
+        <a href="https://omemeditation.org/" target="_blank" class="btn btn-secondary" style="margin-top:20px;">Visit OME Meditation</a>
+      </div>
+      <div class="card" style="padding:32px;">
+        <div style="font-size:2rem; margin-bottom:16px;">🎧</div>
+        <h4 style="margin-bottom:10px;">Guided Meditation Videos</h4>
+        <p style="font-size:0.9rem;">Free guided meditation videos to support your practice at home, anytime.</p>
+        <a href="https://www.youtube.com/@HappinessHub4U" target="_blank" class="btn btn-secondary" style="margin-top:20px;">Watch on YouTube</a>
+      </div>
+      <div class="card" style="padding:32px;">
+        <div style="font-size:2rem; margin-bottom:16px;">💬</div>
+        <h4 style="margin-bottom:10px;">Live Q&amp;A Sessions</h4>
+        <p style="font-size:0.9rem;">Book a free 30-minute consultation with a guide to get your questions answered.</p>
+        <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=75478&k_service=304065" target="_blank" class="btn btn-secondary" style="margin-top:20px;">Book Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Corporate ── -->
+<section id="corporate" class="corporate-section" style="padding: 80px 24px;">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-label">Corporate & Teams</span>
+        <h2>Bring meditation to your workplace</h2>
+        <p>We offer customized workshops for teams and organizations — from a single lunchtime session to multi-week programs. Our workshops are practical, evidence-based, and accessible to every level of experience.</p>
+        <p>Past clients include companies in tech, finance, healthcare, education, and the nonprofit sector.</p>
+        <div style="display:flex; gap:16px; margin-top:32px; flex-wrap:wrap;">
+          <a href="mailto:info@bklynmeditation.com?subject=Corporate Workshop" class="btn btn-primary">Request a Quote</a>
+          <a href="tel:7186221868" class="btn btn-outline-white">Call Us: (718) 622-1868</a>
+        </div>
+      </div>
+      <div>
+        <div class="corporate-features">
+          <div class="corporate-feature">
+            <h4>On-site or Virtual</h4>
+            <p>We come to your office or deliver via Zoom — whichever works best for your team.</p>
+          </div>
+          <div class="corporate-feature">
+            <h4>Fully Customized</h4>
+            <p>Workshop content tailored to your team's needs: stress, focus, leadership, burnout.</p>
+          </div>
+          <div class="corporate-feature">
+            <h4>Any Group Size</h4>
+            <p>From small teams of 5 to company-wide events of 100+.</p>
+          </div>
+          <div class="corporate-feature">
+            <h4>Ongoing Programs</h4>
+            <p>Weekly or monthly recurring sessions for sustained culture change.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Acts of Service ── -->
+<section style="background: var(--white); padding: 80px 24px;">
+  <div class="container">
+    <div style="max-width:680px; margin:0 auto; text-align:center;">
+      <span class="section-label">Community</span>
+      <h2>Acts of Service</h2>
+      <p style="margin-top:16px; font-size:1.05rem;">We believe that inner peace leads naturally to outward care. Our Acts of Service program connects meditators with meaningful volunteer opportunities in the Park Slope community.</p>
+      <p style="margin-top:12px;">From neighborhood cleanups to visiting soup kitchens, we practice going outward as well as inward.</p>
+      <div style="display:flex; gap:16px; justify-content:center; margin-top:32px; flex-wrap:wrap;">
+        <a href="https://www.wellnessliving.com/schedule/brooklyn_meditation?id_class_tab=1&k_class=1032032" target="_blank" class="btn btn-primary">Get Involved</a>
+        <a href="#" class="btn btn-secondary">Donate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <span class="section-label" style="display:block; margin-bottom:16px;">Not sure where to start?</span>
+    <h2>Come to a free session first</h2>
+    <p>No commitment. No experience needed. Just show up.</p>
+    <div class="btn-group">
+      <a href="https://www.wellnessliving.com/rs/appointment-start.html?id_class_tab=3&id_mode=1&k_business=760342&k_class_tab=75478&k_service=304065" target="_blank" class="btn btn-primary">30 Minute Consultation</a>
+      <a href="schedule.html" class="btn btn-secondary">See Full Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-name">Brooklyn Meditation</div>
+        <div class="brand-sub">Park Slope · Est. 2015</div>
+        <p>A guided meditation practice for lasting peace, clarity, and joy.</p>
+        <div class="footer-contact-info">
+          <a href="tel:7186221868">📞 (718) 622-1868</a>
+          <a href="mailto:info@bklynmeditation.com">✉ info@bklynmeditation.com</a>
+          <a href="https://maps.google.com/?q=833+Union+Street+Brooklyn+NY" target="_blank">📍 833 Union St, 2nd Floor, Park Slope 11215</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="about.html">Our Method</a></li>
+          <li><a href="about.html#founder">Founder</a></li>
+          <li><a href="about.html#team">Guides</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Membership</h5>
+        <ul>
+          <li><a href="membership.html">Plans & Pricing</a></li>
+          <li><a href="schedule.html">Class Schedule</a></li>
+          <li><a href="membership.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Events</h5>
+        <ul>
+          <li><a href="events.html#open">Free Open Sessions</a></li>
+          <li><a href="events.html#workshops">Workshops</a></li>
+          <li><a href="events.html#online">Free Online</a></li>
+          <li><a href="events.html#corporate">Corporate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Brooklyn Meditation. All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/bklynmeditation/" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/brooklyn.meditation/" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UC7eDlQXFxyxiVDfOb5kyuow" target="_blank" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.97C5.12 20 12 20 12 20s6.88 0 8.6-.45a2.78 2.78 0 0 0 1.94-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('mobileNavClose').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.body.style.overflow = '';
+  });
+</script>
+</body>
+</html>
