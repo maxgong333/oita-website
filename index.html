@@ -280,48 +280,94 @@
 </section>
 
 
-<!-- ── Benefits ── -->
+<!-- ── Benefits / Testimonials ── -->
 <section class="benefits-section">
   <div class="container">
     <div class="section-header">
       <span class="section-label">Benefits</span>
       <h2>What changes when you meditate</h2>
-      <p>Thousands of practitioners have found that this practice reaches the root — not just the symptoms.</p>
+      <p>Thousands of practitioners have found that this practice reaches the root — not just the symptoms. Read their stories.</p>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">🧠</div>
-        <h4>Not Dwelling on the Past</h4>
-        <p>Release accumulated memories and experiences so the mind is no longer weighed down by what has already passed.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🌿</div>
-        <h4>Objectivity & Clarity</h4>
-        <p>See situations as they truly are — not through the lens of past experience, fear, or assumption.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">☁️</div>
-        <h4>No More Foggy Thoughts</h4>
-        <p>As mental clutter dissolves, thinking becomes sharper and lighter — a naturally clearer mind emerges.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">⚡</div>
-        <h4>Improved Concentration</h4>
-        <p>Without the noise of unnecessary thought, focus comes effortlessly — at work, in conversation, and in daily life.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🌊</div>
-        <h4>A Broader Mind</h4>
-        <p>Expand your perspective beyond personal habit and history — living with greater openness, compassion, and ease.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">☀️</div>
-        <h4>No Anger or Regrets</h4>
-        <p>Discard the root of reactive emotions so situations no longer trigger anger, resentment, or lingering regret.</p>
+
+    <!-- Tab Buttons -->
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:48px;">
+      <button onclick="showTestimonial('clarity')" id="btn-clarity"
+        style="padding:14px 28px; border-radius:50px; border:2px solid var(--primary-dark); background:var(--primary-dark); color:#fff; font-size:0.95rem; font-family:inherit; cursor:pointer; transition:all 0.2s; font-weight:500;">
+        🌿 Objectivity &amp; Clarity
+      </button>
+      <button onclick="showTestimonial('concentration')" id="btn-concentration"
+        style="padding:14px 28px; border-radius:50px; border:2px solid var(--primary-dark); background:transparent; color:var(--primary-dark); font-size:0.95rem; font-family:inherit; cursor:pointer; transition:all 0.2s; font-weight:500;">
+        ⚡ Improved Concentration
+      </button>
+      <button onclick="showTestimonial('past')" id="btn-past"
+        style="padding:14px 28px; border-radius:50px; border:2px solid var(--primary-dark); background:transparent; color:var(--primary-dark); font-size:0.95rem; font-family:inherit; cursor:pointer; transition:all 0.2s; font-weight:500;">
+        🧠 Letting Go of the Past
+      </button>
+    </div>
+
+    <!-- Testimonial Panels -->
+    <div id="testimonial-clarity" style="max-width:780px; margin:0 auto; background:var(--white); border-radius:20px; padding:48px 52px; border:1px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+      <div style="font-size:2.5rem; color:var(--primary); margin-bottom:20px; line-height:1;">"</div>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Before meditation, I was a master ruminator, always in my head rehearsing or replaying a conversation; always fearing or wanting. I could walk across the park and never hear a bird sing, the wind in the trees, or the joyful sound of children playing.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Through this meditation practice, I have realized how attached I was to my life experiences. Viewing life through these experiences meant that they were controlling how I showed up in the world. I was never fully present.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Throwing away my experiences has freed me in so many ways. I am not as reactive as I once was. I do not take everything personally. I am able to see a situation for what it is. I no longer judge everyone; nor do I fear everyone's judgment of me. The freedom in being fully present results in perceiving life with clarity.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text);">I see the flow of this beautiful life; I understand the ways of the world. I am so grateful!</p>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:16px;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-light); display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-weight:600; color:var(--primary-dark);">L</div>
+        <div>
+          <div style="font-weight:600; color:var(--dark);">Lynne</div>
+          <div style="font-size:0.88rem; color:var(--text-light);">Brooklyn Meditation Member</div>
+        </div>
       </div>
     </div>
+
+    <div id="testimonial-concentration" style="display:none; max-width:780px; margin:0 auto; background:var(--white); border-radius:20px; padding:48px 52px; border:1px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+      <div style="font-size:2.5rem; color:var(--primary); margin-bottom:20px; line-height:1;">"</div>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Meditation has taught me how to reflect and let go of cluttered wandering thoughts, uncontrolled emotions, and unhelpful habits. As a result, my concentration has improved significantly.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Instead of wasting time feeling overwhelmed by everything I need to do, I started to practice gratitude and celebration for the smallest things in my life while taking steady, cumulative actions toward my goals.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text);">I've also noticed that I'm much more productive at work and have greater capacity to handle challenges in my personal life as my abilities to concentrate improved thanks to meditation.</p>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:16px;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-light); display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-weight:600; color:var(--primary-dark);">H</div>
+        <div>
+          <div style="font-weight:600; color:var(--dark);">Heather</div>
+          <div style="font-size:0.88rem; color:var(--text-light);">Brooklyn Meditation Member</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="testimonial-past" style="display:none; max-width:780px; margin:0 auto; background:var(--white); border-radius:20px; padding:48px 52px; border:1px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+      <div style="font-size:2.5rem; color:var(--primary); margin-bottom:20px; line-height:1;">"</div>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">I did well academically in high school. My grades were good and I excelled in a few subjects. With this self-image in hand, I entered college confident that I would succeed. But college was a shipwreck. When I finally graduated, I felt defeated.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Many years later, I found this meditation method. It showed me how to reexamine that experience from a more objective point of view and uncover the assumptions I had constructed about myself. What I came to understand was that I had a hidden and carefully guarded inner belief that I am special — and that I entered college expecting that environment to recognize that specialness.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:20px;">Through meditation, I began to let go of the belief that I was so special. I could see how my own response made the shipwreck inevitable — I steered the ship onto the rocks myself.</p>
+      <p style="font-size:1.05rem; line-height:1.85; color:var(--text);">Letting go of the fantasy of specialness has made it much less of a burden. I am now closer to living in the real world, with a more balanced and realistic view of myself. And that's not bad at all.</p>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; gap:16px;">
+        <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-light); display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-weight:600; color:var(--primary-dark);">R</div>
+        <div>
+          <div style="font-weight:600; color:var(--dark);">Ross</div>
+          <div style="font-size:0.88rem; color:var(--text-light);">Brooklyn Meditation Member</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<script>
+function showTestimonial(id) {
+  var panels = ['clarity','concentration','past'];
+  panels.forEach(function(p) {
+    document.getElementById('testimonial-' + p).style.display = 'none';
+    var btn = document.getElementById('btn-' + p);
+    btn.style.background = 'transparent';
+    btn.style.color = 'var(--primary-dark)';
+  });
+  document.getElementById('testimonial-' + id).style.display = 'block';
+  var activeBtn = document.getElementById('btn-' + id);
+  activeBtn.style.background = 'var(--primary-dark)';
+  activeBtn.style.color = '#fff';
+}
+</script>
 
 <!-- ── Statistics ── -->
 <section id="stats-section" style="padding: 88px 24px; background: #F2F2F2;">
